@@ -27,4 +27,6 @@
 						http://spring-crypto-utils.googlecode.com/svn/trunk/src/main/resources/com/google/code/springcryptoutils/core/spring/crypt.xsd
 						http://www.jasypt.org/schema/encryption
                         http://www.jasypt.org/schema/encryption/jasypt-spring3-encryption-1.xsd">
+
+<context:component-scan base-package="blog.platform.authentication" />
 </beans>

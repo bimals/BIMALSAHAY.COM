@@ -30,9 +30,8 @@ public class CustomUserDetailsService implements UserDetailsService,Authenticati
 		return domainUser;
 	}
 
-	@Override
-	public UserDetails loadUserDetails(Authentication token)
-			throws UsernameNotFoundException {
+	//@Override
+	public UserDetails loadUserDetails(Authentication token) throws UsernameNotFoundException {
 		//LOGGER.info("Getting user details from loadUserDetails :: " );
 		
 		String username = token.getName();
