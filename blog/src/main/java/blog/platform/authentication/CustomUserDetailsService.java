@@ -1,12 +1,6 @@
 package blog.platform.authentication;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
-
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.AuthenticationUserDetailsService;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,18 +9,19 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
+import blog.db.repository.IUserRepository;
 import blog.model.AccountUser;
 
 
 @Service
 @Transactional(readOnly = true)
 public class CustomUserDetailsService implements UserDetailsService,AuthenticationUserDetailsService {
-	//private static final Logger LOGGER = Logger.getLogger(CustomUserDetailsService.class);
+	
+	@Autowired IUserRepository userRepository;
 	
 		
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		AccountUser domainUser = null;
+		AccountUser domainUser = userRepository.findByUserName(username);
 		return domainUser;
 	}
 
@@ -44,7 +39,7 @@ public class CustomUserDetailsService implements UserDetailsService,Authenticati
 	
 	private boolean isPrivilegedUser(AccountUser user){
 		//Set<UserRole> userRoles = user.getUserRole();
-		boolean isPrivilegedRole = false;
+		boolean isPrivilegedRole = true;
 /*		UserRole tmp = null;
 		Iterator<UserRole> cursor = userRoles.iterator();
 		while(cursor.hasNext()){

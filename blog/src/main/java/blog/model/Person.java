@@ -4,6 +4,16 @@ import org.springframework.data.annotation.Id;
 
 public class Person {
 	
+	public Person(String id, String name, String address, int age, String gender, String userName) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.address = address;
+		this.age = age;
+		this.gender = gender;
+		this.userName = userName;
+	}
+
 	@Id
     private String id;
     
@@ -11,6 +21,7 @@ public class Person {
     private String address;
 	int age;
 	String gender;
+	String userName;
 		
 	public Person() {
 		
@@ -68,6 +79,14 @@ public class Person {
     public String toString(){
         return id+"::"+name+"::"+address;
     }
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 }
 
 

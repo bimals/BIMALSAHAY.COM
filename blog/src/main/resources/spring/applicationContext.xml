@@ -9,6 +9,7 @@
 	xmlns:util="http://www.springframework.org/schema/util"
 	xmlns:crypt="http://code.google.com/p/spring-crypto-utils/schema/crypt"
 	xmlns:encryption="http://www.jasypt.org/schema/encryption"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
     xsi:schemaLocation="http://www.springframework.org/schema/jee 
     					http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
 				        http://www.springframework.org/schema/aop 
@@ -26,7 +27,19 @@
         				http://code.google.com/p/spring-crypto-utils/schema/crypt 
 						http://spring-crypto-utils.googlecode.com/svn/trunk/src/main/resources/com/google/code/springcryptoutils/core/spring/crypt.xsd
 						http://www.jasypt.org/schema/encryption
-                        http://www.jasypt.org/schema/encryption/jasypt-spring3-encryption-1.xsd">
+                        http://www.jasypt.org/schema/encryption/jasypt-spring3-encryption-1.xsd
+                        http://www.springframework.org/schema/mvc 
+                        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+                        
+<import resource="application-config.xml" />                         
 
+<context:component-scan base-package="blog.controller" />
+<context:component-scan base-package="blog.db" />
+<context:component-scan base-package="blog.db.repository" />
+<context:component-scan base-package="blog.db.service" />
+<context:component-scan base-package="blog.model" />
 <context:component-scan base-package="blog.platform.authentication" />
+
+<mvc:resources mapping="/resources/**" location="/resources/"/>
+
 </beans>

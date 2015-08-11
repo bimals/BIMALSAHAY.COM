@@ -33,8 +33,8 @@ public class SpringMongoTest {
         System.out.println("Retrieved Person after update="+temp);
          
         //delete
-        int count = personDAO.deleteById(p1.getId());
-        System.out.println("Number of records deleted="+count);
+       // int count = personDAO.deleteById(p1.getId());
+        //System.out.println("Number of records deleted="+count);
          
         ctx.close();
     }
