@@ -1,32 +1,28 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<div id="login-box">
-	<c:if test="${not empty error}">
-		<div class="error">${error}</div>
-	</c:if>
-	<c:if test="${not empty msg}">
-		<div class="msg">${msg}</div>
-	</c:if>
-
-	<form name='loginForm'
-	  action="<c:url value='/account/user/login' />" method='POST'>
-
-	  <table>
-		<tr>
-			<td>User:</td>
-			<td><input type='text' name='username' value=''></td>
-		</tr>
-		<tr>
-			<td>Password:</td>
-			<td><input type='password' name='password' /></td>
-		</tr>
-		<tr>
-			<td colspan='2'><input name="submit" type="submit"
-				value="submit" /></td>
-		</tr>
-	  </table>
-
-	  <input type="hidden" name="${_csrf.parameterName}"
-		value="${_csrf.token}" />
-
-	</form>
-</div>
+	<div class="row-fluid" ng-app="loginApp" role="main">
+	    <form class="form-horizontal" ng-controller="loginController" ng-submit="login()">
+	        <div class="form-group">
+	            <label for="inputEmail" class="control-label col-xs-2">Email</label>
+	            <div class="col-xs-10">
+	                <input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model="inputEmail">
+	            </div>
+	        </div>
+	        <div class="form-group">
+	            <label for="inputPassword" class="control-label col-xs-2">Password</label>
+	            <div class="col-xs-10">
+	                <input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model="password">
+	            </div>
+	        </div>	          
+	        <div class="form-group">
+	            <div class="col-xs-offset-2 col-xs-10">
+	                <div class="checkbox">
+	                    <label><input type="checkbox"> Remember Me</label>
+	                </div>
+	            </div>
+	        </div>
+	        <div class="form-group">
+	            <div class="col-xs-offset-2 col-xs-10">
+	                <button type="submit" class="btn btn-primary">Login</button>
+	            </div>
+	        </div>
+	    </form>
+	</div>

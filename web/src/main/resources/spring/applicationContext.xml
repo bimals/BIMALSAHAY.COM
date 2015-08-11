@@ -30,11 +30,16 @@
                         http://www.jasypt.org/schema/encryption/jasypt-spring3-encryption-1.xsd
                         http://www.springframework.org/schema/mvc 
                         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+                        
+<import resource="application-config.xml" />                         
 
 <context:component-scan base-package="blog.controller" />
 <context:component-scan base-package="blog.db" />
+<context:component-scan base-package="blog.db.repository" />
+<context:component-scan base-package="blog.db.service" />
 <context:component-scan base-package="blog.model" />
 <context:component-scan base-package="blog.platform.authentication" />
 
 <mvc:resources mapping="/resources/**" location="/resources/"/>
+
 </beans>
