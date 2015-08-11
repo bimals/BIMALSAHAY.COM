@@ -12,5 +12,11 @@ public class BlogController {
 		
 		return "home";
 	}
+	
+	@RequestMapping(value="/account/user/login", method = RequestMethod.GET)
+	public String login() {
+		
+		return "home";
+	}
 
 }

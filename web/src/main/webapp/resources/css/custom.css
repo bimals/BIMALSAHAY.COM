@@ -1,0 +1,58 @@
+#main .container, #topnav .container {
+  background:#fff;
+}
+#container-wrap .container {
+  background: #fff;
+  margin-top: 28px;
+  min-height: 600px;
+}
+#masthead.navbar {
+  float:left;
+}
+
+#container-wrap, #main {
+margin-top: 36px;
+}
+
+* {
+    margin: 0;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  right:0;
+  left:0;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+.error {
+	padding: 15px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	color: #a94442;
+	background-color: #f2dede;
+	border-color: #ebccd1;
+}
+
+.msg {
+	padding: 15px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	color: #31708f;
+	background-color: #d9edf7;
+	border-color: #bce8f1;
+}
+
+#login-box {
+	width: 300px;
+	padding: 20px;
+	margin: 100px auto;
+	background: #fff;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border: 1px solid #000;
+}
