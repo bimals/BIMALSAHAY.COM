@@ -5,7 +5,7 @@
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          id="WebApp_ID" version="2.5">
 
-    <display-name>web</display-name>
+    <display-name>Admin</display-name>
     
    <!--
 		- Location of the XML file that defines the root application context.
@@ -19,6 +19,18 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+    
+    <filter>
+	  <filter-name>springSecurityFilterChain</filter-name>
+	  <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	
+	<filter-mapping>
+	  <filter-name>springSecurityFilterChain</filter-name>
+	  <url-pattern>/*</url-pattern>
+	    <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>	  
+	</filter-mapping>
     
 	<!-- Processes application requests -->
 	<servlet>

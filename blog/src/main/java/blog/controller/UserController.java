@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -22,13 +23,15 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/account/user/login", method = RequestMethod.POST)
-	public String login(HttpServletRequest request) {
-		String userName = request.getParameter("username");
-		AccountUser user = userRepository.findByUserName(userName);
-		if(user != null) {
+	public String login(@RequestBody AccountUser user) throws Exception {
+
+		AccountUser accountUser = userRepository.findByUserName(user.getUserName());
+		if(accountUser != null) {
 			return "forward:/account/user/loginSuccess";
 		}
-		return "login";
+		else {
+			throw new Exception("Login Failed");
+		}
 	}
 	
 	@RequestMapping(value="/account/user/loginSuccess")

@@ -1,30 +1,31 @@
 <!DOCTYPE html>
 <html ng-app="bs">
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<head>
+    <!-- Meta-Information -->
+    <title>Online Jewelry MarketPlace</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="9LAKHA.COM">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+		
+	<link rel="stylesheet" type="text/css" media="screen" href="/web/resources/css/bootstrap-theme.css"/>	
+	<link rel="stylesheet" type="text/css" media="screen" href="/web/resources/css/bootstrap.css"/>	
+	<link rel="stylesheet" type="text/css" media="screen" href="/web/resources/css/custom.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/web/resources/css/font-awesome.css" />
 	
-<link rel="stylesheet" type="text/css" media="screen" href="/web/resources/css/bootstrap-theme.css"/>	
-<link rel="stylesheet" type="text/css" media="screen" href="/web/resources/css/bootstrap.css"/>	
-<link rel="stylesheet" type="text/css" media="screen" href="/web/resources/css/custom.css" />
-
-<script src="/web/resources/js/bootstrap.js"></script>
-<script src="/web/resources/js/angular.js"></script>
-<script src="/web/resources/js/bs.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="/web/resources/js/bootstrap.js"></script>
+	<script src="/web/resources/js/angular.js"></script>
+	<script src="/web/resources/js/angular-route.js"></script>
+	<script src="/web/resources/js/bs.js"></script>
+	<script src="/web/resources/js/ng-infinite-scroll.js"></script>
+</head>
 <body>
-	<div class="topbar">
-		<tiles:insertAttribute name="masthead" />
-	</div>
- 	<div id="topnav" class="topbar">
-		<tiles:insertAttribute name="topnav" />		
-	</div> 
-	
-	<div id="container-wrap" class="row-fluid">
-		<div class="container">
-			<tiles:insertAttribute name="menu" />		
- 			<tiles:insertAttribute name="main" />
-		</div>
-	</div>
- 	<div id="footer" class="footer">
-		<tiles:insertAttribute name="footer" />
-	</div> 
+	<tiles:insertAttribute name="masthead" />
+	<tiles:insertAttribute name="topnav" />	
+	<tiles:insertAttribute name="menu" />		
+ 	<tiles:insertAttribute name="main" />
+	<tiles:insertAttribute name="footer" />
 </body>
 </html>

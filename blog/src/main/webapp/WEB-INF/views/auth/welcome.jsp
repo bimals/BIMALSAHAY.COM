@@ -1,1 +1,1 @@
-WELCOME TO THE WEBSITE
+<div ng-view></div>

@@ -6,9 +6,12 @@
 <link rel="stylesheet" type="text/css" media="screen" href="/blog/resources/css/bootstrap.css"/>	
 <link rel="stylesheet" type="text/css" media="screen" href="/blog/resources/css/custom.css" />
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="/blog/resources/js/bootstrap.js"></script>
 <script src="/blog/resources/js/angular.js"></script>
+<script src="/blog/resources/js/angular-route.js"></script>
 <script src="/blog/resources/js/bs.js"></script>
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <body>
 	<div class="topbar">
 		<tiles:insertAttribute name="masthead" />
@@ -23,8 +26,6 @@
  			<tiles:insertAttribute name="main" />
 		</div>
 	</div>
- 	<div id="footer" class="footer">
-		<tiles:insertAttribute name="footer" />
-	</div> 
+	<tiles:insertAttribute name="footer" />
 </body>
 </html>

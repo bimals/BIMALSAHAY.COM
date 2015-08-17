@@ -1,2 +1,1 @@
-<div class="navbar navbar-fixed-top navbar-inverse" id="masthead" role="banner">
-</div>
+<div ng-include='"resources/templates/header.html"'></div>

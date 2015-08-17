@@ -10,6 +10,7 @@
 	</configs>
 	<autoconfigs>
 		<config>src/main/webapp/WEB-INF/mvc-config.xml</config>
+		<config>src/main/webapp/WEB-INF/secure-servlet.xml</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>
