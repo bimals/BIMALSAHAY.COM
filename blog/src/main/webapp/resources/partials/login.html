@@ -1,0 +1,56 @@
+    <!-- Main Content -->
+    <header class="intro-header" style="background-image: url('resources/img/about-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>Bimal Sahay</h1>
+                        <hr class="small">
+                        <span class="subheading">A Software Engineer</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+        <h3>Welcome Back! Login.</h3>
+	    <form class="form-horizontal" action="/blog/j_spring_security_check" method='POST'>
+			<div class="control-group">
+						<label for="j_username" class="control-label">User Email</label>
+							<div class="controls">
+								<input type="text" name="j_username" id="j_username" value="" class="input-xlarge" size="30" onkeypress="resetErrorMsg(this)" />
+								<!-- <div class="error help-inline" id="j_username_error"></div> -->
+								<div id="j_username_valid" style="display:none;"> 
+								</div>
+							</div>
+					</div>
+					
+					<div class="control-group">
+						<label for="j_password" class="control-label">User Password</label>
+							<div class="controls">
+								<input type="password" name="j_password" id="j_password" value="" class="input-xlarge" size="30" onkeypress="resetErrorMsg(this)">
+								<!-- <div class="error help-inline" id="j_password_error" name="j_password_error"></div> -->
+							</div>
+					</div>
+					
+					<div class="control-group">
+						<div class="controls">
+                        <div class="control-group">
+                            <label class="checkbox inline"> 
+                                <input type="checkbox" name="_spring_security_remember_me"> <span>
+                                Remember Me
+                            </label>
+						</div>
+                        <input type="submit"  id="submit" value="Login" class="btn btn-primary btn-large margin10-t">                        
+						</div>
+					</div>
+					
+	    </form>
+        </div>
+
+    </div>
+    <!-- /.row -->
+
+</div><!-- /.container -->

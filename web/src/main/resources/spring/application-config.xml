@@ -25,9 +25,5 @@
 	 
 	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
 	    <constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
-	</bean>
-	 
-	<bean id="personDAO" class="blog.db.service.PersonDAOImpl">
-	    <property name="mongoOps" ref="mongoTemplate"/>
-	</bean>    
+	</bean> 
 </beans>

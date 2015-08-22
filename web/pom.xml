@@ -2,12 +2,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.springframework.samples.service.service</groupId>
-	<artifactId>Admin</artifactId>
+	<artifactId>BIMALSAHAY</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<build>
-		<finalName>web</finalName>
+		<finalName>BIMALSAHAY</finalName>
 		<plugins>
 			<plugin>
 				<groupId>com.mysema.maven</groupId>
@@ -28,7 +28,7 @@
 	<profiles>
 		<profile>
 			<build>
-				<finalName>Admin</finalName>
+				<finalName>BIMALSAHAY</finalName>
 				<plugins>
 					<plugin>
 						<artifactId>maven-resources-plugin</artifactId>
@@ -41,7 +41,7 @@
 									<goal>copy-resources</goal>
 								</goals>
 								<configuration>
-									<outputDirectory>${basedir}/target/web/WEB-INF/classes/</outputDirectory>
+									<outputDirectory>${basedir}/target/ghix-web/WEB-INF/classes/</outputDirectory>
 									<outputDirectory>${basedir}/src/main/resources/</outputDirectory> <!-- copy to working folder, required for development -->
 									<overWrite>true</overWrite>
 									<resources>

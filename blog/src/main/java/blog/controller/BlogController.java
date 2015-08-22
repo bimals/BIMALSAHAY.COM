@@ -10,7 +10,7 @@ public class BlogController {
 	@RequestMapping(value="/blog", method = RequestMethod.GET)
 	public String writeBlog() {
 		
-		return "home";
+		return "blog";
 	}
 
 

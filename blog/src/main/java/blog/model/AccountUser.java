@@ -1,11 +1,15 @@
 package blog.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.mongodb.BasicDBList;
 
 public class AccountUser implements Serializable,Cloneable, UserDetails {
 	
@@ -19,6 +23,9 @@ public class AccountUser implements Serializable,Cloneable, UserDetails {
 	private String password;
 	private String firstName;
 	private String lastName;
+	private BasicDBList blogs;
+	private BasicDBList followers;
+	private BasicDBList followings;
 	
 	public String getId() {
 		return id;
@@ -57,21 +64,43 @@ public class AccountUser implements Serializable,Cloneable, UserDetails {
 
 	public boolean isAccountNonExpired() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 	public boolean isAccountNonLocked() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 	public boolean isCredentialsNonExpired() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 	public String getUsername() {
 		return userName;
-	}	
+	}
+	public BasicDBList getBlogs() {
+		if(blogs == null) {
+			blogs = new BasicDBList();
+		}
+		return blogs;
+	}
+	public void setBlogs(BasicDBList blogs) {
+		this.blogs = blogs;
+	}
+	public BasicDBList getFollowers() {
+		return followers;
+	}
+	public void setFollowers(BasicDBList followers) {
+		this.followers = followers;
+	}
+	public BasicDBList getFollowings() {
+		return followings;
+	}
+	public void setFollowings(BasicDBList followings) {
+		this.followings = followings;
+	}
+
 }

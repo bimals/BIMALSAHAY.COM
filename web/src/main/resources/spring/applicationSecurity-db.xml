@@ -33,34 +33,30 @@
 	<!-- <beans:bean class="com.getinsured.hix.platform.security.CustomPermissionEvaluator" id="customPermissionEvaluator"/> -->
 	<http pattern="/favicon.ico" security="none" />
 	<http auto-config="true" use-expressions="true" disable-url-rewriting="true" access-denied-page="/account/user/denied">
-	
-		<!-- To achieve Remember-me functionality - HIX-15569 - Darshan Hardas 
-		<intercept-url pattern="/account/user/login" access="permitAll" />
-		<intercept-url pattern="/account/user/loginSuccess" access="isAuthenticated()" />-->
-		
-		<!-- START :: LIST OF UN SECURIED URLS -->
+
 		<intercept-url pattern="/"  access="permitAll" />
 		<intercept-url pattern="/index.jsp"  access="permitAll" />
 		<intercept-url pattern="/default/**" access="permitAll" />
+		<intercept-url pattern="/web/**"  access="permitAll" />
+		<intercept-url pattern="/blog/**"  access="permitAll" />
 		<intercept-url pattern="/resources/**" access="permitAll" />
+		<intercept-url pattern="/web/resources/**" access="permitAll" />
 		<intercept-url pattern="/account/user/create**" access="permitAll" />
 		<intercept-url pattern="/account/user/checklogin**" access="permitAll" />
-		<intercept-url pattern="/product/search**" access="permitAll" />
-		<intercept-url pattern="/product/image/**" access="permitAll" />
-		
-		
-		<!-- END :: LIST OF UN SECURIED URLS -->
+		<intercept-url pattern="/login/**" access="permitAll" />
+		<intercept-url pattern="/about/**" access="permitAll" />
+
 		<intercept-url pattern="/**/**" access="isAuthenticated()" />
 		<form-login always-use-default-target="true" 
-				login-page="/#/" 
+				login-page="/login" 
 				authentication-success-handler-ref="ghixSuccessHandler" 
 				authentication-failure-handler-ref="ghixFailureHandler"
-				default-target-url="/#/" />
+				default-target-url="/" />
 			
 		<logout 
 				delete-cookies="JSESSIONID"
 				invalidate-session="true" 
-				logout-success-url="/account/user/login" />
+				logout-success-url="/login" />
 		
 		<expression-handler ref="customExpressionHandler"/>
 		<session-management session-authentication-strategy-ref="sessionFixationStrategy"/>
@@ -72,13 +68,15 @@
       	<beans:property name="migrateSessionAttributes" value="true"></beans:property>
       </beans:bean>
 	
-	<beans:bean id="ghixSuccessHandler" class="blog.platform.authentication.UrlAuthenticationSuccessHandler">
-	 	<beans:property name="defaultTargetUrl" value="/#/"/>
+	<beans:bean id="ghixSuccessHandler" class="com.bimalsahay.blog.platform.authentication.UrlAuthenticationSuccessHandler">
+	 	<beans:property name="defaultTargetUrl" value="/#/home"/>
+	 	<beans:property name="targetUrlParameter" value="/#/home"/>
+	 	<beans:property name="alwaysUseDefaultTargetUrl" value="true"/>	 		 	
 	 	<beans:property name="baseGhixAuthContext" value="/web"/>
 	</beans:bean>
 	
-	<beans:bean id="ghixFailureHandler" class="blog.platform.authentication.UrlAuthenticationFailureHandler">
-	 	<beans:property name="defaultFailureUrl" value="/#/login"/>
+	<beans:bean id="ghixFailureHandler" class="com.bimalsahay.blog.platform.authentication.UrlAuthenticationFailureHandler">
+	 	<beans:property name="defaultFailureUrl" value="/login"/>
 	</beans:bean>
 	
 	<beans:bean id="saltSource" class="org.springframework.security.authentication.dao.ReflectionSaltSource"
@@ -92,11 +90,11 @@
     </beans:property>
 	</beans:bean> 
 	<beans:bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
-	<beans:bean id="customUserDetailsService" class="blog.platform.authentication.CustomUserDetailsService" />
-	<beans:bean id="ghixDaoAuthenticationProvider" class="blog.platform.authentication.DaoAuthenticationProvider" />
+	<beans:bean id="customUserDetailsService" class="com.bimalsahay.blog.platform.authentication.CustomUserDetailsService" />
+	<beans:bean id="daoAuthenticationProvider" class="com.bimalsahay.blog.platform.authentication.DaoAuthenticationProvider" />
    
 	<authentication-manager>
-	    <authentication-provider ref="ghixDaoAuthenticationProvider" />
+	    <authentication-provider ref="daoAuthenticationProvider" />
 	</authentication-manager>
 	
 </beans:beans>

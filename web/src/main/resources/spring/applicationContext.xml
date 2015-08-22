@@ -33,12 +33,19 @@
                         
 	<import resource="application-config.xml" />                         
 	
+	<context:component-scan base-package="com.bimalsahay" />
+	<context:component-scan base-package="com.bimalsahay.blog" />
+	<context:component-scan base-package="com.bimalsahay.blog.controller" />
 	<context:component-scan base-package="blog.controller" />
 	<context:component-scan base-package="blog.db" />
 	<context:component-scan base-package="blog.db.repository" />
 	<context:component-scan base-package="blog.db.service" />
 	<context:component-scan base-package="blog.model" />
-	<context:component-scan base-package="blog.platform.authentication" />
+	<context:component-scan base-package="com.bimalsahay.blog.db" />
+	<context:component-scan base-package="com.bimalsahay.blog.db.repository" />
+	<context:component-scan base-package="com.bimalsahay.blog.db.service" />
+	<context:component-scan base-package="com.bimalsahay.blog.model" />
+	<context:component-scan base-package="com.bimalsahay.blog.platform.authentication" />
 	
 	<mvc:resources mapping="/resources/**" location="/resources/"/>
 	

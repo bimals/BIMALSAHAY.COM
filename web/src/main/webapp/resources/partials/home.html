@@ -1,80 +1,130 @@
-<div ng-controller="HomeController" ng-init="search(3);isLoggedIn();">
-<div class="container" style="margin-top:20px">
-
-    <div class="row well">
-		<div class="col-lg-6">
-		<form class="form-horizontal">
-			<div class="input-group">
-				<input type="text" class="form-control" placeholder="Search for..." ng-model="searchText">
-				<span class="input-group-btn">
-					<button class="btn btn-default" ng-click="search(3)">Go!</button>
-				</span>
-			</div>
-			</form>
-		</div>
-		<!-- /.col-lg-6 -->
-		<div class="col-lg-4 col-md-4">
-            <a class="btn btn-lg btn-primary pull-right" ng-show="!loggedIn" href="#/pricing">Start Selling Now!</a>
-        </div>
-    </div>
-
-</div>
-
-<div class="section">
-
+    <!-- Page Content -->
     <div class="container">
-        <div class="row" ng-repeat="product in products" ng-if="$index % 3 == 0" class="row" infinite-scroll="searchMore(3)" infinite-scroll-disabled="busy">
-<!--             <div class="col-lg-4 col-md-4 col-sm-6">
-                <a href="#/jwel/details">
-                    <img class="img-responsive img-home-portfolio" src="/web/product/image/{{product.id + '-' + product.productUUID}}">
-                </a>
-            </div> -->
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <a href="#/jwel/details">
-                    <img class="img-responsive img-home-portfolio" src="/web/product/image/{{products[$index].id + '-' + products[$index].productUUID}}">
-                    <div class="caption">
-						<div class="row">
-							<div class="col-md-6 col-xs-6">
-								<p>{{products[$index].productName}}</p>
-							</div>
-							<div class="col-md-6 col-xs-6">
-								<p>$9.99</p>
-							</div>
-						</div>
-					</div>
+
+        <!-- Marketing Icons Section -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Please Visit and Like My Other Works
+                </h1>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><i class="fa fa-fw fa-check"></i> BAHIKHAATA.COM</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
+                        <!-- <a href="#" class="btn btn-default">Learn More</a> -->
+						<div class="fb-like" data-share="true" data-width="450"
+							data-show-faces="true"></div>                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><i class="fa fa-fw fa-gift"></i> 9LAKHAJWELS.COM</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
+                        <!-- <a href="#" class="btn btn-default">Learn More</a> -->
+						<div class="fb-like" data-share="true" data-width="450"
+							data-show-faces="true"></div>                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><i class="fa fa-fw fa-compass"></i> BABAJIKIGHANTI.COM</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
+                      <!--   <a href="#" class="btn btn-default">Learn More</a> -->
+						<div class="fb-like" data-share="true" data-width="450"
+							data-show-faces="true"></div>                      
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Portfolio Section -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Products and Adds</h2>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
                 </a>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <a href="#/jwel/details">
-                    <img class="img-responsive img-home-portfolio" src="/web/resources/img/image3.jpg">
-                    <div class="caption">
-						<div class="row">
-							<div class="col-md-6 col-xs-6">
-								<p>{{products[$index + 1].productName}}</p>
-							</div>
-							<div class="col-md-6 col-xs-6">
-								<p>$9.99</p>
-							</div>
-						</div>
-					</div>                    
+            <div class="col-md-4 col-sm-6">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
                 </a>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <a href="#/jwel/details">
-                    <img class="img-responsive img-home-portfolio" src="/web/resources/img/image4.jpg">
-                    <div class="caption">
-						<div class="row">
-							<div class="col-md-6 col-xs-6">
-								<p>{{products[$index + 2].productName}}</p>
-							</div>
-							<div class="col-md-6 col-xs-6">
-								<p>$9.99</p>
-							</div>
-						</div>
-					</div>                    
+            <div class="col-md-4 col-sm-6">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
                 </a>
             </div>
         </div>
-    </div>
-    </div>
-    </div>
+        <!-- /.row -->
+
+        <!-- Features Section -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">My Experience</h2>
+            </div>
+            <div class="col-md-6">
+                <p>The Modern Business template by Start Bootstrap includes:</p>
+                <ul>
+                    <li><strong>Bootstrap v3.2.0</strong>
+                    </li>
+                    <li>jQuery v1.11.0</li>
+                    <li>Font Awesome v4.1.0</li>
+                    <li>Working PHP contact form with validation</li>
+                    <li>Unstyled page elements for easy customization</li>
+                    <li>17 HTML pages</li>
+                </ul>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, omnis doloremque non cum id reprehenderit, quisquam totam aspernatur tempora minima unde aliquid ea culpa sunt. Reiciendis quia dolorum ducimus unde.</p>
+            </div>
+            <div class="col-md-6">
+                <img class="img-responsive" src="http://placehold.it/700x450" alt="">
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Call to Action Section -->
+        <div class="well">
+            <div class="row">
+                <div class="col-md-8">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, expedita, saepe, vero rerum deleniti beatae veniam harum neque nemo praesentium cum alias asperiores commodi.</p>
+                </div>
+                <div class="col-md-4">
+                    <a class="btn btn-lg btn-default btn-block" href="#">Call to Action</a>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+</div>
