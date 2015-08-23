@@ -22,6 +22,6 @@ public interface BlogService {
 
 	List<Blog> searchBlogByKeyWord(SearchCriteria searchCriteria);
 
-	GridFSDBFile getBlogImage(String imageId);
+	List<GridFSDBFile> getBlogImage(String imageId);
 
 }

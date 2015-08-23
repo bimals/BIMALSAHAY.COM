@@ -1,4 +1,4 @@
-package com.bimalsahay.blog.platform.authentication;
+package com.bimalsahay.platform.authentication;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -9,9 +9,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.bimalsahay.blog.model.AccountUser;
+import com.bimalsahay.model.AccountUser;
 
-import com.bimalsahay.blog.db.repository.IUserRepository;
+import com.bimalsahay.repository.IUserRepository;
 
 
 @Service

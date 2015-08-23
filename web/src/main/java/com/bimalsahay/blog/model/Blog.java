@@ -6,6 +6,8 @@ import java.util.UUID;
 
 import org.springframework.data.annotation.Id;
 
+import com.mongodb.BasicDBList;
+
 public class Blog implements Serializable,Cloneable {
 	
 	private static final long serialVersionUID = -7605052698976876820L;
@@ -20,9 +22,13 @@ public class Blog implements Serializable,Cloneable {
 	private String blogDescription;
 	private UUID blogUUID;
 	private String userId;
+	private String userFullName;
+	private String userPhotoLink;
 	private String imageId;
 	private BlogStatus blogStatus;
 	private Date creationTimeStamp;
+	private BasicDBList comment;
+	private BasicDBList likes;
 	
 	public String getId() {
 		return id;
@@ -102,6 +108,30 @@ public class Blog implements Serializable,Cloneable {
 	}
 	public void setCreationTimeStamp(Date creationTimeStamp) {
 		this.creationTimeStamp = creationTimeStamp;
+	}
+	public String getUserFullName() {
+		return userFullName;
+	}
+	public void setUserFullName(String userFullName) {
+		this.userFullName = userFullName;
+	}
+	public String getUserPhotoLink() {
+		return userPhotoLink;
+	}
+	public void setUserPhotoLink(String userPhotoLink) {
+		this.userPhotoLink = userPhotoLink;
+	}
+	public BasicDBList getComment() {
+		return comment;
+	}
+	public void setComment(BasicDBList comment) {
+		this.comment = comment;
+	}
+	public BasicDBList getLikes() {
+		return likes;
+	}
+	public void setLikes(BasicDBList likes) {
+		this.likes = likes;
 	}
 
 }

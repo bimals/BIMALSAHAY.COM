@@ -11,9 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.bimalsahay.blog.model.AccountUser;
-
-import com.bimalsahay.blog.db.repository.IUserRepository;
+import com.bimalsahay.model.AccountUser;
+import com.bimalsahay.repository.IUserRepository;
 
 @Controller
 public class RegistrationController {

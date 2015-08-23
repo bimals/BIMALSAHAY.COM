@@ -1,8 +1,8 @@
-package com.bimalsahay.blog.db.repository;
+package com.bimalsahay.repository;
 
 import org.springframework.stereotype.Repository;
 
-import com.bimalsahay.blog.model.AccountUser;
+import com.bimalsahay.model.AccountUser;
 
 @Repository
 public interface IUserRepository {

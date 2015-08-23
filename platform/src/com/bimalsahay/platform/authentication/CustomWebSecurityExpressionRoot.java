@@ -1,11 +1,11 @@
-package com.bimalsahay.blog.platform.authentication;
+package com.bimalsahay.platform.authentication;
 
 //import org.apache.log4j.Logger;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.expression.WebSecurityExpressionRoot;
 
-import com.bimalsahay.blog.model.AccountUser;
+import com.bimalsahay.model.AccountUser;
 
 
 

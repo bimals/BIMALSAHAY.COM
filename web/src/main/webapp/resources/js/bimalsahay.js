@@ -132,7 +132,7 @@ app.config([ '$routeProvider', function($routeProvider) {
 	}).when("/contact", {
 		templateUrl : "/web/resources/partials/contact.html",
 		controller : "PageCtrl"
-	}).when("/registration", {
+	}).when("/register", {
 		templateUrl : "/web/resources/partials/registration.html",
 		controller : "PageCtrl"
 	}).when("/login", {
@@ -170,7 +170,14 @@ app.config([ '$routeProvider', function($routeProvider) {
 	}).when("/drafts", {
 		templateUrl : "/web/resources/partials/drafts.html",
 		controller : "BlogCtrl"
+	}).when("/edit", {
+		templateUrl : "/web/resources/partials/editdraft.html",
+		controller : "BlogCtrl"
+	}).when("/myCarousel", {
+		templateUrl : "/web/resources/partials/editdraft.html",
+		controller : "BlogCtrl"
 	})
+	
 	
 	// else 404
 	.otherwise("/404", {
@@ -282,23 +289,93 @@ function onSignIn(googleUser) {
 	}
 
 
-app.controller('AppController', ['$http', '$scope', 'FileUploader', function($http, $scope, FileUploader) {
+app.controller('AppController', ['$http', '$scope', 'FileUploader', '$rootScope', function($http, $scope, FileUploader, $rootScope) {
+	
+	$scope.homePageBlogs = function() {
+		var res = $http.post('/web/blog');
+		res.success(function(data, status, headers, config) {
+			$scope.blogs = data;
+			window.location = '#/all';
+		});
+		res.error(function(data, status, headers, config) {
+			window.location = '/web/login/#/login';
+		});
+	};
+	
+	$scope.editDraft = function() {
+		var res = $http.get('/web/blog/' + $rootScope.currentDraft);
+		res.success(function(data, status, headers, config) {
+			$scope.id = data.id;
+			$scope.blogTitle = data.blogTitle;
+			$scope.blogWebsite = data.blogWebsite;
+			$scope.blogYouTube = data.blogYouTube;
+			$scope.blogText = data.blogText;
+			$scope.blogMoreText = data.blogMoreText;
+		});
+		res.error(function(data, status, headers, config) {
+			alert("failure message: " + JSON.stringify({
+				data : data
+			}));
+		});
+	};
+		
+	$scope.useThisTemplate = function(draft) {
+		$rootScope.currentDraft = draft.id;
+		var res = $http.get('/web/blog/' + $rootScope.currentDraft);
+		res.success(function(data, status, headers, config) {
+			$scope.id = data.id;
+			$scope.blogTitle = data.blogTitle;
+			$scope.blogWebsite = data.blogWebsite;
+			$scope.blogYouTube = data.blogYouTube;
+			$scope.blogText = data.blogText;
+			$scope.blogMoreText = data.blogMoreText;
+		});
+		res.error(function(data, status, headers, config) {
+			alert("failure message: " + JSON.stringify({
+				data : data
+			}));
+		});
+		window.location = "#/edit";
+	};
+	
+	$scope.addNew = function(draft) {
+		$rootScope.useNew = true;
+		window.location = "#/new";
+	};
 	
 	$scope.checkForDraftBlogs = function() {
-		var blogObj = {
-				blogTitle : $scope.blogTitle,
-				blogWebsite : $scope.blogWebsite,
-				blogYouTube : $scope.blogYouTube,
-				blogText : $scope.blogText,
-				blogMoreText : $scope.blogMoreText
-			};
-			var res = $http.post('/web/blog', blogObj);
+		if(!$rootScope.useNew) {
+			var res = $http.post('/web/blog/draft', blogObj);
 			res.success(function(data, status, headers, config) {
-				$scope.drafts = data;
-				$scope.inputEmail = '';
-				$scope.password = '';
-				$scope.firstName = '';
-				$scope.lastName = '';
+				if(data.length != 0) {
+					$scope.drafts = data;
+					window.location = '#/drafts';
+				}
+				else {
+					window.location = '#/new';
+				}
+			});
+			res.error(function(data, status, headers, config) {
+				window.location = '/web/login/#/login';
+			});
+		} else {
+			
+			var blogObj = {
+					blogTitle : $scope.blogTitle,
+					blogWebsite : $scope.blogWebsite,
+					blogYouTube : $scope.blogYouTube,
+					blogText : $scope.blogText,
+					blogMoreText : $scope.blogMoreText
+				};
+			
+			var res = $http.post('/web/user/draft', blogObj);
+			res.success(function(data, status, headers, config) {
+				$scope.id = data.id;
+				$scope.blogTitle = data.blogTitle;
+				$scope.blogWebsite = data.blogWebsite;
+				$scope.blogYouTube = data.blogYouTube;
+				$scope.blogText = data.blogText;
+				$scope.blogMoreText = data.blogMoreText;
 				window.location = '#/drafts';
 			});
 			res.error(function(data, status, headers, config) {
@@ -306,10 +383,12 @@ app.controller('AppController', ['$http', '$scope', 'FileUploader', function($ht
 					data : data
 				}));
 			});
+		}
 	};
 	
 	$scope.addDraftBlog = function() {
 		var blogObj = {
+				id : $scope.id,
 				blogTitle : $scope.blogTitle,
 				blogWebsite : $scope.blogWebsite,
 				blogYouTube : $scope.blogYouTube,
@@ -318,11 +397,12 @@ app.controller('AppController', ['$http', '$scope', 'FileUploader', function($ht
 			};
 			var res = $http.post('/web/user/draft', blogObj);
 			res.success(function(data, status, headers, config) {
-				$scope.message = data;
-				$scope.inputEmail = '';
-				$scope.password = '';
-				$scope.firstName = '';
-				$scope.lastName = '';
+				$scope.id = data.id;
+				$scope.blogTitle = data.blogTitle;
+				$scope.blogWebsite = data.blogWebsite;
+				$scope.blogYouTube = data.blogYouTube;
+				$scope.blogText = data.blogText;
+				$scope.blogMoreText = data.blogMoreText;
 				window.location = '#/new';
 			});
 			res.error(function(data, status, headers, config) {
@@ -335,6 +415,7 @@ app.controller('AppController', ['$http', '$scope', 'FileUploader', function($ht
 	
 	$scope.publishBlog = function() {
 		var blogObj = {
+				id : $scope.id,
 				blogTitle : $scope.blogTitle,
 				blogWebsite : $scope.blogWebsite,
 				blogYouTube : $scope.blogYouTube,
@@ -343,11 +424,8 @@ app.controller('AppController', ['$http', '$scope', 'FileUploader', function($ht
 			};
 			var res = $http.post('/web/user/createblog', blogObj);
 			res.success(function(data, status, headers, config) {
-				$scope.message = data;
-				$scope.inputEmail = '';
-				$scope.password = '';
-				$scope.firstName = '';
-				$scope.lastName = '';
+				$rootScope.useNew = false;
+				$rootScope.currentDraft = null;
 				window.location = '#/web/post';
 			});
 			res.error(function(data, status, headers, config) {
@@ -360,7 +438,7 @@ app.controller('AppController', ['$http', '$scope', 'FileUploader', function($ht
 	
 	
     var uploader = $scope.uploader = new FileUploader({
-        url: '/web/user/addproductimage'
+        url: '/web/user/'+$rootScope.currentDraft+'/image'
     });
 
     // FILTERS

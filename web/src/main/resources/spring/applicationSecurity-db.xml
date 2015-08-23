@@ -68,14 +68,14 @@
       	<beans:property name="migrateSessionAttributes" value="true"></beans:property>
       </beans:bean>
 	
-	<beans:bean id="ghixSuccessHandler" class="com.bimalsahay.blog.platform.authentication.UrlAuthenticationSuccessHandler">
+	<beans:bean id="ghixSuccessHandler" class="com.bimalsahay.platform.authentication.UrlAuthenticationSuccessHandler">
 	 	<beans:property name="defaultTargetUrl" value="/#/home"/>
 	 	<beans:property name="targetUrlParameter" value="/#/home"/>
 	 	<beans:property name="alwaysUseDefaultTargetUrl" value="true"/>	 		 	
 	 	<beans:property name="baseGhixAuthContext" value="/web"/>
 	</beans:bean>
 	
-	<beans:bean id="ghixFailureHandler" class="com.bimalsahay.blog.platform.authentication.UrlAuthenticationFailureHandler">
+	<beans:bean id="ghixFailureHandler" class="com.bimalsahay.platform.authentication.UrlAuthenticationFailureHandler">
 	 	<beans:property name="defaultFailureUrl" value="/login"/>
 	</beans:bean>
 	
@@ -90,8 +90,8 @@
     </beans:property>
 	</beans:bean> 
 	<beans:bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
-	<beans:bean id="customUserDetailsService" class="com.bimalsahay.blog.platform.authentication.CustomUserDetailsService" />
-	<beans:bean id="daoAuthenticationProvider" class="com.bimalsahay.blog.platform.authentication.DaoAuthenticationProvider" />
+	<beans:bean id="customUserDetailsService" class="com.bimalsahay.platform.authentication.CustomUserDetailsService" />
+	<beans:bean id="daoAuthenticationProvider" class="com.bimalsahay.platform.authentication.DaoAuthenticationProvider" />
    
 	<authentication-manager>
 	    <authentication-provider ref="daoAuthenticationProvider" />

@@ -1,4 +1,4 @@
-package com.bimalsahay.blog.platform.authentication;
+package com.bimalsahay.platform.authentication;
 
 import java.io.IOException;
 

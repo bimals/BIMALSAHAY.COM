@@ -1,5 +1,5 @@
 //package org.springframework.security.web.authentication.preauth;
-package com.bimalsahay.blog.platform.authentication;
+package com.bimalsahay.platform.authentication;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;

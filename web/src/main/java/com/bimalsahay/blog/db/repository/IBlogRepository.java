@@ -26,7 +26,7 @@ public interface IBlogRepository {
 
 	public List<Blog> searchBlogByKeyWord(SearchCriteria searchCriteria);
 
-	public GridFSDBFile getBlogImage(String imageId);
+	public List<GridFSDBFile> getBlogImage(String imageId);
 
 	public List<Blog> findByBlogStatus(BlogStatus status, String userId);
 }

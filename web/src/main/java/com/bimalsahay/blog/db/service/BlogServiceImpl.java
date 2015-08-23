@@ -39,7 +39,7 @@ public class BlogServiceImpl implements BlogService {
 		return blogRepository.searchBlogByKeyWord(searchCriteria);
 	}
 
-	public GridFSDBFile getBlogImage(String imageId) {
+	public List<GridFSDBFile> getBlogImage(String imageId) {
 		return blogRepository.getBlogImage(imageId);
 	}
 

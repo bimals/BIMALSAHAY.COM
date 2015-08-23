@@ -1,4 +1,4 @@
-package com.bimalsahay.blog.platform.authentication;
+package com.bimalsahay.platform.authentication;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

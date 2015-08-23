@@ -1,4 +1,4 @@
-package com.bimalsahay.blog.controller;
+package com.bimalsahay.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.bimalsahay.blog.db.repository.IUserRepository;
-import com.bimalsahay.blog.model.AccountUser;
+import com.bimalsahay.model.AccountUser;
+import com.bimalsahay.repository.IUserRepository;
 
 @Controller
 public class UserController {

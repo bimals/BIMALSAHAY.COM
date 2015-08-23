@@ -1,4 +1,4 @@
-<div class="container" ng-controller="AppController" nv-file-drop="" uploader="uploader" ng-init="checkForDraftBlogs();">
+<div class="container" ng-controller="AppController" ng-init="checkForDraftBlogs();">
 
 	<div class="row">
 
@@ -125,17 +125,16 @@
 													class="glyphicon glyphicon-remove"></i></span></td>
 											<td nowrap>
 												<button type="button" class="btn btn-success btn-xs"
-													ng-click="item.upload()"
-													ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+													ng-click="useThisTemplate(draft)">
 													<span class="glyphicon glyphicon-upload"></span> Use
 												</button>
 												<button type="button" class="btn btn-warning btn-xs"
-													ng-click="item.cancel()" ng-disabled="!item.isUploading">
+													ng-click="deleteThisTemplate(draft)">
 													<span class="glyphicon glyphicon-ban-circle"></span> Trash
 												</button>
 												<button type="button" class="btn btn-danger btn-xs"
-													ng-click="item.remove()">
-													<span class="glyphicon glyphicon-trash"></span> Remove
+													ng-click="copyThisTemplate(draft)">
+													<span class="glyphicon glyphicon-trash"></span> Copy
 												</button>
 											</td>
 										</tr>
@@ -144,13 +143,11 @@
 
 								<div>
 									<button type="button" class="btn btn-success btn-s"
-										ng-click="uploader.uploadAll()"
-										ng-disabled="!uploader.getNotUploadedItems().length">
-										<span class="glyphicon glyphicon-upload"></span> Upload all
+										ng-click="addNew()">
+										<span class="glyphicon glyphicon-upload"></span> Add New
 									</button>
 									<button type="button" class="btn btn-warning btn-s"
-										ng-click="uploader.cancelAll()"
-										ng-disabled="!uploader.isUploading">
+										ng-click="uploader.cancelAll()">
 										<span class="glyphicon glyphicon-ban-circle"></span> Cancel
 										all
 									</button>

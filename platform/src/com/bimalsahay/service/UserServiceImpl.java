@@ -1,4 +1,4 @@
-package com.bimalsahay.blog.db.service;
+package com.bimalsahay.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -7,9 +7,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import com.bimalsahay.blog.model.AccountUser;
-
-import com.bimalsahay.blog.db.repository.IUserRepository;
+import com.bimalsahay.model.AccountUser;
+import com.bimalsahay.repository.IUserRepository;
 
 @Service
 @Qualifier("userService")
@@ -30,11 +29,11 @@ public class UserServiceImpl implements UserService {
 			return (AccountUser) loggedInUser;
 		}
 		else {
-			return null;
+			throw new Exception("User Not Logged In.");
 		}
 	}
 
-	public void updateUser(com.bimalsahay.blog.model.AccountUser user) {
+	public void updateUser(com.bimalsahay.model.AccountUser user) {
 		userRepository.update(user);
 		
 	}

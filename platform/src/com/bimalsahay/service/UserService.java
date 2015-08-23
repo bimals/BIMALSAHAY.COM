@@ -1,8 +1,8 @@
-package com.bimalsahay.blog.db.service;
+package com.bimalsahay.service;
 
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.bimalsahay.blog.model.AccountUser;
+import com.bimalsahay.model.AccountUser;
 
 public interface UserService {
 

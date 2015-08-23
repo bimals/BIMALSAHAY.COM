@@ -1,4 +1,4 @@
-package com.bimalsahay.blog.db.repository;
+package com.bimalsahay.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -7,8 +7,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
-import com.bimalsahay.blog.model.AccountUser;
-import com.bimalsahay.blog.model.Product;
+import com.bimalsahay.model.AccountUser;
 
 @Repository
 @Qualifier("userRepository")
@@ -18,12 +17,6 @@ public class UserRepository implements IUserRepository {
     private static final String USER_COLLECTION = "User";
     
 	public void createUser(AccountUser user) {
-		Product Product = new com.bimalsahay.blog.model.Product();
-		Product.setProductDescription("Test");
-		 user.getBlogs().add(Product);
-		 user.getBlogs().add("Test1");
-		 user.getBlogs().add("Test2");
-		 user.getBlogs().add("Test3");
 		this.mongoOps.insert(user, USER_COLLECTION);
 	}
 	public AccountUser findById(String id) {

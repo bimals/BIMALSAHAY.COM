@@ -1,4 +1,4 @@
-package com.bimalsahay.blog.model;
+package com.bimalsahay.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -28,6 +28,7 @@ public class AccountUser implements Serializable,Cloneable, UserDetails {
 	private BasicDBList blogs;
 	private BasicDBList followers;
 	private BasicDBList followings;
+	private String photoLink;
 	
 	public String getId() {
 		return id;
@@ -121,6 +122,12 @@ public class AccountUser implements Serializable,Cloneable, UserDetails {
 	}
 	public void setUserTypeId(String userTypeId) {
 		this.userTypeId = userTypeId;
+	}
+	public String getPhotoLink() {
+		return photoLink;
+	}
+	public void setPhotoLink(String photoLink) {
+		this.photoLink = photoLink;
 	}
 
 }

@@ -32,11 +32,15 @@ public class BlogRepository implements IBlogRepository{
 	private static final String BLOG_COLLECTION = "Blog";
 
 	public Blog createBlog(Blog blog) throws IOException {
-		UUID blogUUID = UUID.randomUUID();
-		blog.setBlogUUID(blogUUID);
-		blog.setCreationTimeStamp(new Date());
-		this.mongoOps.insert(blog, BLOG_COLLECTION);
-		return this.findByUUID(blogUUID);
+		if(blog.getBlogUUID() == null) {
+			UUID blogUUID = UUID.randomUUID();
+			blog.setBlogUUID(blogUUID);
+		}
+		if(blog.getCreationTimeStamp() == null) {
+			blog.setCreationTimeStamp(new Date());
+		}
+		this.mongoOps.save(blog, BLOG_COLLECTION);
+		return this.findByUUID(blog.getBlogUUID());
 	}
 
 	public Blog findById(String id) {
@@ -96,14 +100,14 @@ public class BlogRepository implements IBlogRepository{
 		return mongoOps.find(query, Blog.class, BLOG_COLLECTION);
 	}
 
-	public GridFSDBFile getBlogImage(String imageId) {
+	public List<GridFSDBFile> getBlogImage(String imageId) {
 		DB db = mongoOps.getCollection("FILES").getDB();
 		GridFS gfsPhoto = new GridFS(db, "FILES");
-		return gfsPhoto.findOne(imageId);
+		return gfsPhoto.find(imageId);
 	}
 
 	public List<Blog> findByBlogStatus(BlogStatus status, String userId) {
-        Query query = new Query(Criteria.where("blogStatus").is(status).andOperator(Criteria.where("userId").is(userId)));
+        Query query = new Query(Criteria.where("blogStatus").is(status).andOperator(Criteria.where("userId").is(userId))).with(new Sort(Direction.DESC, "_id"));
         return this.mongoOps.find(query, Blog.class, BLOG_COLLECTION);
 	}
 
