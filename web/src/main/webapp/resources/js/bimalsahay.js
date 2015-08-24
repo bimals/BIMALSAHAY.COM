@@ -13,7 +13,7 @@ app.controller("RegistrationController", [ '$scope', '$http',
 					firstName : $scope.firstName,
 					lastName : $scope.lastName
 				};
-				var res = $http.post('/web/account/user/create', userObj);
+				var res = $http.post('/bimalsahay/account/user/create', userObj);
 				res.success(function(data, status, headers, config) {
 					$scope.message = data;
 					$scope.inputEmail = '';
@@ -41,7 +41,7 @@ app.controller("HomeController", [ '$scope', '$http', '$rootScope', function($sc
 
 	   $scope.isLoggedIn = function() {
 
-		      $http.get('/web/account/user/checklogin')
+		      $http.get('/bimalsahay/account/user/checklogin')
 		        .success(function(data) {
 		          console.log(data);
 		          $rootScope.loggedIn = data;
@@ -58,7 +58,7 @@ app.controller("HomeController", [ '$scope', '$http', '$rootScope', function($sc
 				skip : skip,
 				
 			};
-			var res = $http.post('/web/product/search', searchObj);
+			var res = $http.post('/bimalsahay/product/search', searchObj);
 			res.success(function(data, status, headers, config) {
 				for (var int = 0; int < data.length; int++) {
 					$scope.products.push(data[int]);
@@ -84,7 +84,7 @@ app.controller("HomeController", [ '$scope', '$http', '$rootScope', function($sc
 				skip : skip,
 				after : $scope.after
 			};
-			var res = $http.post('/web/product/search', searchObj);
+			var res = $http.post('/bimalsahay/product/search', searchObj);
 			res.success(function(data, status, headers, config) {
 				for (var int = 0; int < data.length; int++) {
 					$scope.products.push(data[int]);
@@ -105,7 +105,7 @@ app.controller("HomeController", [ '$scope', '$http', '$rootScope', function($sc
 app.directive("oneBlog", function() {
 	return {
 		restrict : 'E',
-		templateUrl : '/web/account/user/login'
+		templateUrl : '/bimalsahay/account/user/login'
 	}
 });
 
@@ -113,42 +113,42 @@ app.config([ '$routeProvider', function($routeProvider) {
 	$routeProvider
 	// Home
 	.when("/", {
-		templateUrl : "/web/resources/partials/home.html",
+		templateUrl : "/bimalsahay/resources/partials/home.html",
 		controller : "PageCtrl"
 	})
 	// Pages
 	.when("/about", {
-		templateUrl : "/web/resources/partials/about.html",
+		templateUrl : "/bimalsahay/resources/partials/about.html",
 		controller : "PageCtrl"
 	}).when("/faq", {
-		templateUrl : "/web/resources/partials/faq.html",
+		templateUrl : "/bimalsahay/resources/partials/faq.html",
 		controller : "PageCtrl"
 	}).when("/pricing", {
-		templateUrl : "/web/resources/partials/pricing.html",
+		templateUrl : "/bimalsahay/resources/partials/pricing.html",
 		controller : "PageCtrl"
 	}).when("/services", {
-		templateUrl : "/web/resources/partials/services.html",
+		templateUrl : "/bimalsahay/resources/partials/services.html",
 		controller : "PageCtrl"
 	}).when("/contact", {
-		templateUrl : "/web/resources/partials/contact.html",
+		templateUrl : "/bimalsahay/resources/partials/contact.html",
 		controller : "PageCtrl"
 	}).when("/register", {
-		templateUrl : "/web/resources/partials/registration.html",
+		templateUrl : "/bimalsahay/resources/partials/registration.html",
 		controller : "PageCtrl"
 	}).when("/login", {
-		templateUrl : "/web/resources/partials/login.html",
+		templateUrl : "/bimalsahay/resources/partials/login.html",
 		controller : "PageCtrl"
 	}).when("/customdesign", {
-		templateUrl : "/web/resources/partials/customdesign.html",
+		templateUrl : "/bimalsahay/resources/partials/customdesign.html",
 		controller : "PageCtrl"
 	}).when("/selljwel", {
-		templateUrl : "/web/resources/partials/selljwel.html",
+		templateUrl : "/bimalsahay/resources/partials/selljwel.html",
 		controller : "PageCtrl"
 	}).when("/newdesign", {
-		templateUrl : "/web/resources/partials/addcustomdesign.html",
+		templateUrl : "/bimalsahay/resources/partials/addcustomdesign.html",
 		controller : "PageCtrl"
 	}).when("/home", {
-		templateUrl : "/web/resources/partials/home.html",
+		templateUrl : "/bimalsahay/resources/partials/home.html",
 		controller : "PageCtrl"
 	})
 	
@@ -156,32 +156,32 @@ app.config([ '$routeProvider', function($routeProvider) {
 	
 	// Blog
 	.when("/all", {
-		templateUrl : "/web/resources/partials/blog-home-2.html",
+		templateUrl : "/bimalsahay/resources/partials/blog-home-2.html",
 		controller : "BlogCtrl"
-	}).when("/web/post", {
-		templateUrl : "/web/resources/partials/post.html",
+	}).when("/bimalsahay/post", {
+		templateUrl : "/bimalsahay/resources/partials/post.html",
 		controller : "BlogCtrl"
 	}).when("/new", {
-		templateUrl : "/web/resources/partials/newblog.html",
+		templateUrl : "/bimalsahay/resources/partials/newblog.html",
 		controller : "BlogCtrl"
 	}).when("/read", {
-		templateUrl : "/web/resources/partials/blog_item.html",
+		templateUrl : "/bimalsahay/resources/partials/blog_item.html",
 		controller : "BlogCtrl"
 	}).when("/drafts", {
-		templateUrl : "/web/resources/partials/drafts.html",
+		templateUrl : "/bimalsahay/resources/partials/drafts.html",
 		controller : "BlogCtrl"
 	}).when("/edit", {
-		templateUrl : "/web/resources/partials/editdraft.html",
+		templateUrl : "/bimalsahay/resources/partials/editdraft.html",
 		controller : "BlogCtrl"
 	}).when("/myCarousel", {
-		templateUrl : "/web/resources/partials/editdraft.html",
+		templateUrl : "/bimalsahay/resources/partials/editdraft.html",
 		controller : "BlogCtrl"
 	})
 	
 	
 	// else 404
 	.otherwise("/404", {
-		templateUrl : "/web/resources/partials/404.html",
+		templateUrl : "/bimalsahay/resources/partials/404.html",
 		controller : "PageCtrl"
 	});
 } ]);
@@ -254,12 +254,12 @@ app.controller('myCtrl', ['$http','$scope', 'fileUpload', function($http, $scope
         console.log('file is ' );
         console.dir(file);
         console.log(files);
-        var uploadUrl = "/web/user/addproductimage";
+        var uploadUrl = "/bimalsahay/user/addproductimage";
 		var productObj = {
 				productName : $scope.productName,
 				productDescription : $scope.productDescription
 			};
-		var res = $http.post('/web/user/createproduct', productObj);
+		var res = $http.post('/bimalsahay/user/createproduct', productObj);
 		res.success(function(data, status, headers, config) {
 			$scope.message = data;
 			$scope.productId = data._id;
@@ -292,18 +292,18 @@ function onSignIn(googleUser) {
 app.controller('AppController', ['$http', '$scope', 'FileUploader', '$rootScope', function($http, $scope, FileUploader, $rootScope) {
 	
 	$scope.homePageBlogs = function() {
-		var res = $http.post('/web/blog');
+		var res = $http.post('/bimalsahay/blog');
 		res.success(function(data, status, headers, config) {
 			$scope.blogs = data;
 			window.location = '#/all';
 		});
 		res.error(function(data, status, headers, config) {
-			window.location = '/web/login/#/login';
+			window.location = '/bimalsahay/login/#/login';
 		});
 	};
 	
 	$scope.editDraft = function() {
-		var res = $http.get('/web/blog/' + $rootScope.currentDraft);
+		var res = $http.get('/bimalsahay/blog/' + $rootScope.currentDraft);
 		res.success(function(data, status, headers, config) {
 			$scope.id = data.id;
 			$scope.blogTitle = data.blogTitle;
@@ -321,7 +321,7 @@ app.controller('AppController', ['$http', '$scope', 'FileUploader', '$rootScope'
 		
 	$scope.useThisTemplate = function(draft) {
 		$rootScope.currentDraft = draft.id;
-		var res = $http.get('/web/blog/' + $rootScope.currentDraft);
+		var res = $http.get('/bimalsahay/blog/' + $rootScope.currentDraft);
 		res.success(function(data, status, headers, config) {
 			$scope.id = data.id;
 			$scope.blogTitle = data.blogTitle;
@@ -345,7 +345,7 @@ app.controller('AppController', ['$http', '$scope', 'FileUploader', '$rootScope'
 	
 	$scope.checkForDraftBlogs = function() {
 		if(!$rootScope.useNew) {
-			var res = $http.post('/web/blog/draft', blogObj);
+			var res = $http.post('/bimalsahay/blog/draft', blogObj);
 			res.success(function(data, status, headers, config) {
 				if(data.length != 0) {
 					$scope.drafts = data;
@@ -356,7 +356,7 @@ app.controller('AppController', ['$http', '$scope', 'FileUploader', '$rootScope'
 				}
 			});
 			res.error(function(data, status, headers, config) {
-				window.location = '/web/login/#/login';
+				window.location = '/bimalsahay/login/#/login';
 			});
 		} else {
 			
@@ -368,7 +368,7 @@ app.controller('AppController', ['$http', '$scope', 'FileUploader', '$rootScope'
 					blogMoreText : $scope.blogMoreText
 				};
 			
-			var res = $http.post('/web/user/draft', blogObj);
+			var res = $http.post('/bimalsahay/user/draft', blogObj);
 			res.success(function(data, status, headers, config) {
 				$scope.id = data.id;
 				$scope.blogTitle = data.blogTitle;
@@ -395,7 +395,7 @@ app.controller('AppController', ['$http', '$scope', 'FileUploader', '$rootScope'
 				blogText : $scope.blogText,
 				blogMoreText : $scope.blogMoreText
 			};
-			var res = $http.post('/web/user/draft', blogObj);
+			var res = $http.post('/bimalsahay/user/draft', blogObj);
 			res.success(function(data, status, headers, config) {
 				$scope.id = data.id;
 				$scope.blogTitle = data.blogTitle;
@@ -422,11 +422,11 @@ app.controller('AppController', ['$http', '$scope', 'FileUploader', '$rootScope'
 				blogText : $scope.blogText,
 				blogMoreText : $scope.blogMoreText
 			};
-			var res = $http.post('/web/user/createblog', blogObj);
+			var res = $http.post('/bimalsahay/user/createblog', blogObj);
 			res.success(function(data, status, headers, config) {
 				$rootScope.useNew = false;
 				$rootScope.currentDraft = null;
-				window.location = '#/web/post';
+				window.location = '#/bimalsahay/post';
 			});
 			res.error(function(data, status, headers, config) {
 				alert("failure message: " + JSON.stringify({
@@ -438,7 +438,7 @@ app.controller('AppController', ['$http', '$scope', 'FileUploader', '$rootScope'
 	
 	
     var uploader = $scope.uploader = new FileUploader({
-        url: '/web/user/'+$rootScope.currentDraft+'/image'
+        url: '/bimalsahay/user/'+$rootScope.currentDraft+'/image'
     });
 
     // FILTERS

@@ -20,7 +20,7 @@
           <div class="item">
               <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Two');"></div>
               <div class="carousel-caption">
-                  <h2>9LAKHAJWELS.COM</h2>
+                  <h2>JEWELHAAT.COM</h2>
               </div>
           </div>
           <div class="item">
@@ -32,13 +32,13 @@
           <div class="item">
               <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Four');"></div>
               <div class="carousel-caption">
-                  <h2>BABAJIKIGHANTI.COM</h2>
+                  <h2>BSAHAY.ORG</h2>
               </div>
           </div>
           <div class="item">
               <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Five');"></div>
               <div class="carousel-caption">
-                  <h2>BABAJIKIGHANTI.COM</h2>
+                  <h2>CHAALOOKHAATA.COM</h2>
               </div>
           </div>          
       </div>

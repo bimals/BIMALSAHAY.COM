@@ -7,10 +7,13 @@
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
+		<config>src/main/resources/spring/applicationSecurity-db.xml</config>
 	</configs>
 	<autoconfigs>
-		<config>src/main/webapp/WEB-INF/mvc-config.xml</config>
+		<config>src/main/resources/spring/appServlet/servlet-context.xml</config>
 		<config>src/main/webapp/WEB-INF/secure-servlet.xml</config>
+		<config>src/main/resources/spring/application-config.xml</config>
+		<config>src/main/resources/spring/applicationContext.xml</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>

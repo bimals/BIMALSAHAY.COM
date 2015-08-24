@@ -88,7 +88,7 @@
       
       $.ajax({
     	    type: 'POST',
-    	    url: '/web/account/user/create',
+    	    url: '/bimalsahay/account/user/create',
     	    data: JSON.stringify (userObj),
     	    success: function(data) { alert('data: ' + data); },
     	    contentType: "application/json",
@@ -103,5 +103,5 @@ function fbLogout() {
 	FB.logout(function(response) {
 		  // user is now logged out
 		});
-	Window.location = "/web/j_spring_security_check";
+	Window.location = "/bimalsahay/j_spring_security_check";
 }
