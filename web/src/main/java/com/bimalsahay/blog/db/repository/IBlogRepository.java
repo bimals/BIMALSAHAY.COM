@@ -29,4 +29,6 @@ public interface IBlogRepository {
 	public List<GridFSDBFile> getBlogImage(String imageId);
 
 	public List<Blog> findByBlogStatus(BlogStatus status, String userId);
+
+	public List<Blog> findAllBlogsByStatus(BlogStatus published, String id);
 }

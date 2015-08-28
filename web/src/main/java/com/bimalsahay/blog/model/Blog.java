@@ -29,7 +29,7 @@ public class Blog implements Serializable,Cloneable {
 	private Date creationTimeStamp;
 	private BasicDBList comment;
 	private BasicDBList likes;
-	
+		
 	public String getId() {
 		return id;
 	}
@@ -122,12 +122,18 @@ public class Blog implements Serializable,Cloneable {
 		this.userPhotoLink = userPhotoLink;
 	}
 	public BasicDBList getComment() {
+		if(comment == null) {
+			comment = new BasicDBList();
+		}
 		return comment;
 	}
 	public void setComment(BasicDBList comment) {
 		this.comment = comment;
 	}
 	public BasicDBList getLikes() {
+		if(likes == null) {
+			likes = new BasicDBList();
+		}
 		return likes;
 	}
 	public void setLikes(BasicDBList likes) {

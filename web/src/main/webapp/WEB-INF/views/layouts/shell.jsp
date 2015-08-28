@@ -31,10 +31,15 @@
 <script src="/bimalsahay/resources/js/fileupload/angular-file-upload.min.js"></script>
 
 <script src="/bimalsahay/resources/js/angular-route.js"></script>
-<script src="/bimalsahay/resources/js/facebooklogin.js"></script>
+<script src="/bimalsahay/resources/js/angular-facebook.js"></script>
 <script src="/bimalsahay/resources/js/ng-infinite-scroll.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
-
+<!-- <script type="text/javascript" src="//platform.linkedin.com/in.js">
+    api_key:75tvyddibk47hf
+    onLoad:checkLoginState
+    authorize:true
+    lang:en_US
+</script> -->
 <!-- <script src="/bimalsahay/resources/js/main.js"></script>
 <script src="/bimalsahay/resources/js/jquery.iframe-transport.js"></script>
 <script src="/bimalsahay/resources/js/jquery.fileupload.js"></script>

@@ -47,5 +47,9 @@ public class BlogServiceImpl implements BlogService {
 		return blogRepository.findByBlogStatus(status, userId);
 	}
 
+	public List<Blog> findAllBlogsByStatus(BlogStatus published, String id) {
+		return blogRepository.findAllBlogsByStatus(published, id);
+	}
+
 
 }

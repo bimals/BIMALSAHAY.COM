@@ -1,4 +1,4 @@
-  // This is called with the results from from FB.getLoginStatus().
+/*  // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
     console.log(response);
@@ -11,13 +11,11 @@
       loginRegister();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
+      //document.getElementById('status').innerHTML = 'Please log ' + 'into this app.';
     } else {
       // The person is not logged into Facebook, so we're not sure if
       // they are logged into this app or not.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into Facebook.';
+      // document.getElementById('status').innerHTML = 'Please log ' + 'into Facebook.';
     }
   }
 
@@ -30,14 +28,7 @@
     });
   }
 
-  window.fbAsyncInit = function() {
-  FB.init({
-    appId      : '481717542008286',
-    cookie     : true,  // enable cookies to allow the server to access 
-                        // the session
-    xfbml      : true,  // parse social plugins on this page
-    version    : 'v2.2' // use version 2.2
-  });
+
 
   // Now that we've initialized the JavaScript SDK, we call 
   // FB.getLoginStatus().  This function gets the state of the
@@ -56,7 +47,10 @@
   });
   
   FB.Event.subscribe('auth.login', function () {
-      window.location = "/web";
+	  var isLoggedIn = angular.element(document.getElementById('headerContainer')).scope().isLoggedIn();
+	  var $rootScope = angular.element(document.getElementById('headerContainer')).scope().$root;
+	  $rootScope.loggedIn = true;
+      window.location = "/bimalsahay";
   });
 
   };
@@ -74,6 +68,10 @@
   // successful.  See statusChangeCallback() for when this call is made.
   function loginRegister() {
     console.log('Welcome!  Fetching your information.... ');
+	  var isLoggedIn = angular.element(document.getElementById('headerContainer')).scope().isLoggedIn();
+	  var $rootScope = angular.element(document.getElementById('headerContainer')).scope().$root;
+	  $rootScope.loggedIn = true;
+    
     FB.api('/me?fields=id,first_name,last_name,friends,email,public_key', function(response) {
       console.log('Successful login for: ' + response);
       
@@ -90,7 +88,9 @@
     	    type: 'POST',
     	    url: '/bimalsahay/account/user/create',
     	    data: JSON.stringify (userObj),
-    	    success: function(data) { alert('data: ' + data); },
+    	    success: function(data) {
+    	    	alert('data: ' + data); 
+    	    },
     	    contentType: "application/json",
     	    dataType: 'json'
     	});
@@ -104,4 +104,4 @@ function fbLogout() {
 		  // user is now logged out
 		});
 	Window.location = "/bimalsahay/j_spring_security_check";
-}
+}*/

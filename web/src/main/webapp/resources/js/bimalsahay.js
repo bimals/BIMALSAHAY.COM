@@ -1,6 +1,13 @@
 'use strict';
 
-var app = angular.module("bs", ['angularFileUpload','ngRoute', 'infinite-scroll'])
+var app = angular.module("bs", ['angularFileUpload','ngRoute', 'infinite-scroll', 'facebook']).config(function(FacebookProvider) {
+     FacebookProvider.init('481717542008286');
+  })
+
+app.controller('authenticationCtrl', function($scope, Facebook) {
+
+	
+  });
 
 app.controller("RegistrationController", [ '$scope', '$http',
 		function($scope, $http) {
@@ -33,21 +40,82 @@ app.controller("RegistrationController", [ '$scope', '$http',
 			};
 		} ]);
 
-app.controller("HomeController", [ '$scope', '$http', '$rootScope', function($scope, $http, $rootScope) {
+app.controller("HomeController", [ '$scope', '$http', '$rootScope', 'Facebook', function($scope, $http, $rootScope, Facebook) {
 	
 		$scope.products = [];
 		$scope.after;
 		$scope.busy = true;
+		
+		$scope.fbLogout = function() {
+			Facebook.logout(function(response) {
+				  // user is now logged out
+				});
+			Window.location = "/bimalsahay/j_spring_security_check";
+		}
 
+	    $scope.login = function() {
+	        // From now on you can use the Facebook service just as Facebook api says
+	        Facebook.login(function(response) {
+	          // Do something with response.
+	        });
+	      };
+
+	      $scope.checkLoginState = function() {
+	        Facebook.getLoginStatus(function(response) {
+	          if(response.status === 'connected') {
+	            $scope.loggedIn = true;
+	          } else {
+	            $scope.loggedIn = false;
+	          }
+	        });
+	      };
+
+	      $scope.me = function() {
+	        Facebook.api('/me', function(response) {
+	          $scope.user = response;
+	        });
+	      };
+	      
 	   $scope.isLoggedIn = function() {
 
-		      $http.get('/bimalsahay/account/user/checklogin')
-		        .success(function(data) {
-		          console.log(data);
-		          $rootScope.loggedIn = data;
-		        })
-		        .error(function(data) {
-		          console.log('error: ' + data);
+	        Facebook.getLoginStatus(function(response) {
+		          if(response.status === 'connected') {
+		        	  $rootScope.loggedIn = true;
+		        	  Facebook.api('/me?fields=id,first_name,last_name,friends,email,public_key', function(response) {
+		        		      console.log('Successful login for: ' + response);
+		        		      
+		        				var userObj = {
+		        						userName : response.email,
+		        						password : "",
+		        						firstName : response.first_name,
+		        						lastName : response.last_name,
+		        						userType : "facebook",
+		        						userTypeId : response.id
+		        					};
+		        		      
+		        		      $.ajax({
+		        		    	    type: 'POST',
+		        		    	    url: '/bimalsahay/account/user/create',
+		        		    	    data: JSON.stringify (userObj),
+		        		    	    success: function(data) {
+		        		    	    	alert('data: ' + data); 
+		        		    	    },
+		        		    	    contentType: "application/json",
+		        		    	    dataType: 'json'
+		        		    	});
+		        		      
+		        		    });
+		          } else {
+		        	  $rootScope.loggedIn = false;
+				      $http.get('/bimalsahay/account/user/checklogin')
+				        .success(function(data) {
+				          console.log(data);
+				          $rootScope.loggedIn = data;
+				        })
+				        .error(function(data) {
+				          console.log('error: ' + data);
+				        });		        	  
+		          }
 		        });
 		    };
 		   
@@ -288,20 +356,69 @@ function onSignIn(googleUser) {
 	  console.log('Email: ' + profile.getEmail());
 	}
 
-
-app.controller('AppController', ['$http', '$scope', 'FileUploader', '$rootScope', function($http, $scope, FileUploader, $rootScope) {
-	
-	$scope.homePageBlogs = function() {
+app.service('blogService', ['$http', function($http){
+	this.getAllPublishedBlogs = function() {
 		var res = $http.post('/bimalsahay/blog');
 		res.success(function(data, status, headers, config) {
-			$scope.blogs = data;
-			window.location = '#/all';
+				
 		});
 		res.error(function(data, status, headers, config) {
 			window.location = '/bimalsahay/login/#/login';
 		});
+		
+		return res;
 	};
 	
+	this.getFullBlog = function(id) {
+		var res = $http.get('/bimalsahay/blog/' + id);
+		
+		res.success(function(data, status, headers, config) {
+			
+		});
+		res.error(function(data, status, headers, config) {
+			window.location = '/bimalsahay/login/#/login';
+		});
+		
+		
+		return res;
+	};
+}]);
+
+app.controller('AppController', ['$http', '$scope', 'FileUploader', '$rootScope', '$routeParams', 'blogService', function($http, $scope, FileUploader, $rootScope, $routeParams, blogService) {
+	
+	$scope.homePageBlogs = function() {
+		blogService.getAllPublishedBlogs().then(function(response) {
+			$scope.blogs = response.data;
+		});
+		window.location = '#/all';
+	};
+	
+	$scope.readBlog = function(data) {
+		window.location = '#/read';
+		$rootScope.id = data.id;
+		
+	};
+	
+	$scope.fullBlog = function() {
+		blogService.getFullBlog($rootScope.id).then(function(response) {
+			$scope.blog = response.data;
+
+		});
+	};
+	
+	$scope.addComment = function(id) {
+		var comment = $scope.comment;
+		var res = $http.post('/bimalsahay/blog/' + id + "/comment", comment);
+		res.success(function(data, status, headers, config) {
+			$scope.blog.comments = data.comment;
+		});
+		res.error(function(data, status, headers, config) {
+			alert("failure message: " + JSON.stringify({
+				data : data
+			}));
+		});
+	}
+ 	
 	$scope.editDraft = function() {
 		var res = $http.get('/bimalsahay/blog/' + $rootScope.currentDraft);
 		res.success(function(data, status, headers, config) {
@@ -320,21 +437,17 @@ app.controller('AppController', ['$http', '$scope', 'FileUploader', '$rootScope'
 	};
 		
 	$scope.useThisTemplate = function(draft) {
-		$rootScope.currentDraft = draft.id;
-		var res = $http.get('/bimalsahay/blog/' + $rootScope.currentDraft);
-		res.success(function(data, status, headers, config) {
-			$scope.id = data.id;
-			$scope.blogTitle = data.blogTitle;
-			$scope.blogWebsite = data.blogWebsite;
-			$scope.blogYouTube = data.blogYouTube;
-			$scope.blogText = data.blogText;
-			$scope.blogMoreText = data.blogMoreText;
+		blogService.getFullBlog(draft.id).then(function(response) {
+			$scope.id = response.data.id;
+			$scope.blogTitle = response.data.blogTitle;
+			$scope.blogWebsite = response.data.blogWebsite;
+			$scope.blogYouTube = response.data.blogYouTube;
+			$scope.blogText = response.data.blogText;
+			$scope.blogMoreText = response.data.blogMoreText;
+			$scope.creationTimeStamp = response.data.creationTimeStamp;
+			$scope.userFullName = response.data.userFullName;
 		});
-		res.error(function(data, status, headers, config) {
-			alert("failure message: " + JSON.stringify({
-				data : data
-			}));
-		});
+		
 		window.location = "#/edit";
 	};
 	
@@ -535,3 +648,8 @@ app.directive('ngThumb', ['$window', function($window) {
             }
         };
     }]);
+
+
+function checkLoginState() {
+	window.location = "/bimalsahay";
+}

@@ -134,6 +134,14 @@ footer {
     border-radius: 50%;
 }
 
+.blog-main-img {
+    width: 900px;
+    height: 300px;
+    margin: 0 auto 10px;
+    display: block;
+    -moz-border-radius: 50%;
+}
+
 /*
  * Form styles
  */

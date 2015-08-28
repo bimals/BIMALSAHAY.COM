@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -24,6 +25,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import com.bimalsahay.blog.db.service.BlogService;
 import com.bimalsahay.blog.model.Blog;
 import com.bimalsahay.blog.model.BlogStatus;
+import com.bimalsahay.blog.model.Comment;
 import com.bimalsahay.model.AccountUser;
 import com.bimalsahay.service.UserService;
 import com.mongodb.gridfs.GridFSDBFile;
@@ -52,7 +54,7 @@ public class BlogController {
 	public List<Blog> blogs() throws Exception {
 		AccountUser user = userService.getLoggedInUser();
 		if(user != null) {
-			return blogService.findByBlogStatus(BlogStatus.PUBLISHED, user.getId());
+			return blogService.findAllBlogsByStatus(BlogStatus.PUBLISHED, user.getId());
 		}
 
 		return null;
@@ -125,6 +127,17 @@ public class BlogController {
 
 
 		return null;
+	}
+	
+	@RequestMapping(value="/blog/{id}/comment", method = RequestMethod.POST)
+	@ResponseBody
+	public Blog addBlogComment(@PathVariable("id") String id, @RequestBody String comment) throws Exception {
+		Blog blog = blogService.findById(id); 
+		AccountUser user = userService.getLoggedInUser();
+		Comment newComment = new Comment(comment,user.getId(), user.getFirstName()+ " " + user.getLastName(), new Date());
+		blog.getComment().add(newComment);
+		blog = blogService.createBlog(blog);
+		return blog;
 	}
 	
 	@RequestMapping(value="/blog/{id}/image", method = RequestMethod.GET)

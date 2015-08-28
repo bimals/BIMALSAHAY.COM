@@ -24,4 +24,6 @@ public interface BlogService {
 
 	List<GridFSDBFile> getBlogImage(String imageId);
 
+	List<Blog> findAllBlogsByStatus(BlogStatus published, String id);
+
 }

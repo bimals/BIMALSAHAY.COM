@@ -19,7 +19,9 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import com.bimalsahay.blog.model.Blog;
 import com.bimalsahay.blog.model.BlogStatus;
 import com.bimalsahay.blog.model.SearchCriteria;
+import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
+import com.mongodb.DBObject;
 import com.mongodb.gridfs.GridFS;
 import com.mongodb.gridfs.GridFSDBFile;
 import com.mongodb.gridfs.GridFSInputFile;
@@ -63,16 +65,24 @@ public class BlogRepository implements IBlogRepository{
 	}
 
 	public void addBlogImage(Blog blog, CommonsMultipartFile fileToUpload) throws IOException {
-        String fileName = blog.getId() + "-" + blog.getBlogUUID();
         DB db = mongoOps.getCollection("FILES").getDB();
 		GridFS gfsPhoto = new GridFS(db, "FILES");
 		GridFSInputFile gfsFile = gfsPhoto.createFile(fileToUpload.getInputStream());
-		gfsFile.setFilename(fileName);
+		gfsFile.setFilename(blog.getId());
 		gfsFile.setContentType(fileToUpload.getContentType());
 		
+		BasicDBObject fileMetadata = new BasicDBObject();
+		fileMetadata.put("fileName", fileToUpload.getName());
+		fileMetadata.put("originalFileName", fileToUpload.getOriginalFilename());
+		fileMetadata.put("contentType", fileToUpload.getContentType());
+		fileMetadata.put("fileSize", fileToUpload.getSize());
+		fileMetadata.put("storageDescription", fileToUpload.getStorageDescription());
+		fileMetadata.put("userId", blog.getUserId());
+		
+		gfsFile.setMetaData(fileMetadata);
 		gfsFile.save();
 		
-		GridFSDBFile imageForOutput = gfsPhoto.findOne(fileName);
+		GridFSDBFile imageForOutput = gfsPhoto.findOne(blog.getId());
 		
 		blog.setImageId(imageForOutput.getId().toString());
 		this.update(blog);
@@ -108,6 +118,11 @@ public class BlogRepository implements IBlogRepository{
 
 	public List<Blog> findByBlogStatus(BlogStatus status, String userId) {
         Query query = new Query(Criteria.where("blogStatus").is(status).andOperator(Criteria.where("userId").is(userId))).with(new Sort(Direction.DESC, "_id"));
+        return this.mongoOps.find(query, Blog.class, BLOG_COLLECTION);
+	}
+
+	public List<Blog> findAllBlogsByStatus(BlogStatus published, String id) {
+        Query query = new Query(Criteria.where("blogStatus").is(published)).with(new Sort(Direction.DESC, "_id"));
         return this.mongoOps.find(query, Blog.class, BLOG_COLLECTION);
 	}
 
